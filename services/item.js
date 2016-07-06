@@ -19,3 +19,23 @@ exports.list = function(callback) {
         callback(null, items);
     });
 };
+
+exports.del = function(id, callback) {
+  Item.findByIdAndRemove(id, function(err, item) {
+    if (err) {
+      callback(err);
+      return;
+    }
+    callback(null, item);
+  });
+};
+
+exports.update = function (id, name, callback) {
+  Item.findByIdAndUpdate(id, {name: name}, function(err, item) {
+    if (err) {
+      callback(err);
+      return;
+    }
+    callback(null, item);
+  });
+};
